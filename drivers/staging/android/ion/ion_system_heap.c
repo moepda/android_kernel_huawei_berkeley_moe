@@ -43,9 +43,9 @@
 /*lint -save -e732 -e713 -e794 -e846 -e514 -e866 -e30*/
 /*lint -save -e84 -e737*/
 
-static gfp_t high_order_gfp_flags = (GFP_USER | __GFP_ZERO | __GFP_NOWARN |
-				     __GFP_NORETRY) & ~__GFP_DIRECT_RECLAIM;
-static gfp_t low_order_gfp_flags  = GFP_USER;
+static gfp_t high_order_gfp_flags = (GFP_HIGHUSER | __GFP_ZERO | __GFP_NOWARN |
+				     __GFP_NORETRY) & ~__GFP_RECLAIM;
+static gfp_t low_order_gfp_flags  = (GFP_HIGHUSER | __GFP_ZERO | __GFP_NOWARN);
 
 static const unsigned int orders[] = {8, 4, 0};
 #define NUM_ORDERS ARRAY_SIZE(orders)
