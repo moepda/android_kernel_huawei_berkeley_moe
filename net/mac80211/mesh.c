@@ -297,8 +297,6 @@ int mesh_add_meshconf_ie(struct ieee80211_sub_if_data *sdata,
 			IEEE80211_MESHCONF_CAPAB_POWER_SAVE_LEVEL : 0x00;
 	*pos++ |= ifmsh->adjusting_tbtt ?
 			IEEE80211_MESHCONF_CAPAB_TBTT_ADJUSTING : 0x00;
-	*pos++ = 0x00;
-
 	return 0;
 }
 
