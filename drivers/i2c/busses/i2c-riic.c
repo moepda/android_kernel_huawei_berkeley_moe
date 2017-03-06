@@ -216,11 +216,14 @@ static irqreturn_t riic_tend_isr(int irq, void *data)
 		return IRQ_NONE;
 	}
 
-	if (riic->is_last || riic->err)
+	if (riic->is_last || riic->err) {
+		riic_clear_set_bit(riic, ICIER_TEIE, ICIER_SPIE, RIIC_ICIER);
 		writeb(ICCR2_SP, riic->base + RIIC_ICCR2);
-
-	writeb(0, riic->base + RIIC_ICIER);
-	complete(&riic->msg_done);
+	} else {
+		/* Transfer is complete, but do not send STOP */
+		riic_clear_set_bit(riic, ICIER_TEIE, 0, RIIC_ICIER);
+		complete(&riic->msg_done);
+	}
 
 	return IRQ_HANDLED;
 }
