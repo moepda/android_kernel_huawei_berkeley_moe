@@ -155,8 +155,12 @@ static inline struct task_struct *alloc_task_struct_node(int node)
 	return kmem_cache_alloc_node(task_struct_cachep, GFP_KERNEL, node);
 }
 
+extern void kaiser_remove_mapping(unsigned long start_addr, unsigned long size);
 static inline void free_task_struct(struct task_struct *tsk)
 {
+#ifdef CONFIG_KAISER
+	kaiser_remove_mapping((unsigned long)ti, THREAD_SIZE);
+#endif
 	kmem_cache_free(task_struct_cachep, tsk);
 }
 #endif
@@ -347,6 +351,7 @@ void set_task_stack_end_magic(struct task_struct *tsk)
 	*stackend = STACK_END_MAGIC;	/* for overflow detection */
 }
 
+extern void kaiser_add_mapping(unsigned long addr, unsigned long size, unsigned long flags);
 static struct task_struct *dup_task_struct(struct task_struct *orig, int node)
 {
 	struct task_struct *tsk;
@@ -368,6 +373,9 @@ static struct task_struct *dup_task_struct(struct task_struct *orig, int node)
 		goto free_stack;
 
 	tsk->stack = stack;
+#ifdef CONFIG_KAISER
+	kaiser_add_mapping((unsigned long)tsk->stack, THREAD_SIZE, __PAGE_KERNEL);
+#endif
 #ifdef CONFIG_SECCOMP
 	/*
 	 * We must handle setting up seccomp filters once we're under
