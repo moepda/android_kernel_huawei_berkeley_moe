@@ -1001,6 +1001,7 @@ static int get_ucode_fw(void *to, const void *from, size_t n)
 	    c->microcode < 0x0b000021) {
 		pr_err_once("Erratum BDF90: late loading with revision < 0x0b000021 (0x%x) disabled.\n", c->microcode);
 		pr_err_once("Please consider either early loading through initrd/built-in or a potential BIOS update.\n");
+		return true;
 	}
 
 	return false;
