@@ -58,3 +58,5 @@ ifeq ($(TARGET_VERSION_MODE),factory)
 obj-$(CONFIG_HISI_DIEID) += dieid/
 endif
 obj-$(CONFIG_HISPIPP) += ipp/
+
+ccflags-y := -Os
