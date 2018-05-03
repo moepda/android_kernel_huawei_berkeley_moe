@@ -34,7 +34,7 @@ static void derive_crypt_complete(struct crypto_async_request *req, int rc)
  *
  * Return: Zero on success; non-zero otherwise.
  */
-static int derive_key_aes(u8 deriving_key[FS_AES_128_ECB_KEY_SIZE],
+static int __maybe_unused derive_key_aes(u8 deriving_key[FS_AES_128_ECB_KEY_SIZE],
 				u8 source_key[FS_AES_256_XTS_KEY_SIZE],
 				u8 derived_key[FS_AES_256_XTS_KEY_SIZE])
 {
