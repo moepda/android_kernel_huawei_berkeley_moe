@@ -1611,7 +1611,7 @@ static int rmap_walk_anon(struct page *page, struct rmap_walk_control *rwc)
 	pgoff_t pgoff;
 	struct anon_vma_chain *avc;
 	int ret = SWAP_AGAIN;
-	struct address_space *mapping = page->mapping;
+	struct address_space *mapping __maybe_unused = page->mapping;
 
 	if (rwc->target_vma) {
 		address = vma_address(page, rwc->target_vma);
