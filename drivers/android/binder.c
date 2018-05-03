@@ -4462,7 +4462,7 @@ retry:
 			}
 
 			pr_err("Failed to call put_user, point:%p, ptr:%p, buffer:%p, size:%zu, *consumed:%zu, cmd:%u\n",
-				t, ptr, buffer, size, *consumed, cmd);
+				t, ptr, buffer, size, (size_t) *consumed, cmd);
 			return -EFAULT;
 		}
 		ptr += sizeof(uint32_t);
@@ -4477,7 +4477,7 @@ retry:
 			}
 
 			pr_err("Failed to call copy_to_user, point:%p, ptr:%p, buffer:%p, size:%zu, *consumed:%zu, cmd:%u\n",
-				t, ptr, buffer, size, *consumed, cmd);
+				t, ptr, buffer, size, (size_t) *consumed, cmd);
 			return -EFAULT;
 		}
 		ptr += sizeof(tr);
