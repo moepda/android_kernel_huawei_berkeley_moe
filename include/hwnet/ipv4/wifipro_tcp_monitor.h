@@ -35,7 +35,7 @@ typedef enum  {
 	MAX_ARR_TITLE_COUNT
 } COUNTER_TYPE;
 
-static char *s_arrTitle[MAX_ARR_TITLE_COUNT] = {
+static char *s_arrTitle[MAX_ARR_TITLE_COUNT] __maybe_unused = {
 	"WEBSENDSEGS",
 	"WEBRESENDSEGS",
 	"WEBRECVSEGS",
@@ -51,10 +51,10 @@ typedef struct {
 	unsigned int counter[MAX_ARR_TITLE_COUNT];
 } UIDTCPStat;
 
-static int s_wlanTcpStat_index;
-static int s_rmnetTcpStat_index;
-static UIDTCPStat s_uidWlanTcpStat[MAX_UID_CNT];   /* for wlan TCP uid Stat */
-static UIDTCPStat s_uidRmnetTcpStat[MAX_UID_CNT];  /* for rmnet TCP uid Stat */
+static int __maybe_unused s_wlanTcpStat_index;
+static int __maybe_unused s_rmnetTcpStat_index;
+static UIDTCPStat __maybe_unused s_uidWlanTcpStat[MAX_UID_CNT];   /* for wlan TCP uid Stat */
+static UIDTCPStat __maybe_unused s_uidRmnetTcpStat[MAX_UID_CNT];  /* for rmnet TCP uid Stat */
 
 
 enum {
