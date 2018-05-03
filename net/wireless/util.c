@@ -911,6 +911,8 @@ void cfg80211_process_wdev_events(struct wireless_dev *wdev)
 			cfg80211_do_drv_private(wdev->netdev, GFP_KERNEL, NL80211_CMD_ANT);
 			break;
 #endif
+		case EVENT_DRV_LAST:
+			break;
 		}
 		wdev_unlock(wdev);
 
