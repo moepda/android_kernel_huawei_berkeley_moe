@@ -965,7 +965,7 @@ void add_disk_randomness(struct gendisk *disk)
 		return;
 	/* first major is 1, so we get >= 0x200 here */
 	if (unlikely(!nonblocking_pool.initialized))
-		pr_notice("random: %s disk=%08x\n", __func__, disk);
+		pr_notice("random: %s disk=%08x\n", __func__, disk->node_id);
 	add_timer_randomness(disk->random, 0x100 + disk_devt(disk));
 	trace_add_disk_randomness(disk_devt(disk), ENTROPY_BITS(&input_pool));
 }
