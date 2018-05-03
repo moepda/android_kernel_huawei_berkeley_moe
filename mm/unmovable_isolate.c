@@ -232,7 +232,7 @@ int get_ddr_size(void)
 
 	if (ddr_size_cmdline > 0 && ddr_size_cmdline < INT_MAX)
 		/* we set the same ui area size when ddr_size above MEMSIZE_INDEX_MAX */
-		ret = min(MEMSIZE_INDEX_MAX + MEMSIZE_INDEX_OFFSET, ddr_size_cmdline);
+		ret = min((long long) (MEMSIZE_INDEX_MAX + MEMSIZE_INDEX_OFFSET), ddr_size_cmdline);
 	else
 		ret = 0;
 	pr_debug("%s:ddrsize is %d\n", __func__, ret);
