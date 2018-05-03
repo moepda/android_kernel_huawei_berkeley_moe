@@ -87,7 +87,7 @@ static int wiphy_uevent(struct device *dev, struct kobj_uevent_env *env)
 }
 
 #ifdef CONFIG_PM_SLEEP
-static void cfg80211_leave_all(struct cfg80211_registered_device *rdev)
+static void __maybe_unused cfg80211_leave_all(struct cfg80211_registered_device *rdev)
 {
 	struct wireless_dev *wdev;
 
