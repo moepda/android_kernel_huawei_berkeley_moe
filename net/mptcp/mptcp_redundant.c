@@ -194,6 +194,7 @@ static struct sk_buff *redundant_next_segment(struct sock *meta_sk,
 	struct tcp_sock *tp;
 	struct sk_buff *skb;
 	int active_valid_sks = -1;
+	int mss_now = -1;
 
 	/* As we set it, we have to reset it as well. */
 	*limit = 0;
@@ -244,7 +245,7 @@ static struct sk_buff *redundant_next_segment(struct sock *meta_sk,
 
 			if (TCP_SKB_CB(skb)->path_mask) {
 				*reinject = -1;
-				int mss_now = tcp_current_mss(meta_sk);
+				mss_now = tcp_current_mss(meta_sk);
 				if (skb->len < mss_now)
 					meta_tp->snd_sml = meta_tp->snd_una;
 			}
