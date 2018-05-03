@@ -1,6 +1,8 @@
 #ifndef _QTAGUID_PID_H
 #define _QTAGUID_PID_H
 
+enum ifs_tx_rx;
+
 void qtaguid_pid_put(const struct sock *sk);
 void qtaguid_pid_remove(const struct sock *sk);
 
