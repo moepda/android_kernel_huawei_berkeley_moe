@@ -1070,7 +1070,7 @@ static void zram_reset_device(struct zram *zram)
 	/* Reset stats */
 	memset(&zram->stats, 0, sizeof(zram->stats));
 	zram->disksize = 0;
-	zram->max_comp_streams = 1;
+	zram->max_comp_streams = CONFIG_NR_CPUS/2;
 
 	set_capacity(zram->disk, 0);
 	part_stat_set_all(&zram->disk->part0, 0);
@@ -1339,7 +1339,7 @@ static int zram_add(void)
 	strlcpy(zram->compressor, default_compressor, sizeof(zram->compressor));
 	strlcpy(zram->pool_type, default_pool_type, sizeof(zram->pool_type));
 	zram->meta = NULL;
-	zram->max_comp_streams = 1;
+	zram->max_comp_streams = CONFIG_NR_CPUS/2;
 
 	pr_info("Added device: %s\n", zram->disk->disk_name);
 	return device_id;
