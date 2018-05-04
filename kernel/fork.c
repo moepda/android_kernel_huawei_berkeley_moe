@@ -403,7 +403,7 @@ static struct task_struct *dup_task_struct(struct task_struct *orig, int node)
 	tsk->task_frag.page = NULL;
 	tsk->wake_q.next = NULL;
 
-	account_kernel_stack(stack, 1);
+	account_kernel_stack(ti, 1);
 
 #ifdef CONFIG_KCOV
 	kcov_task_init(tsk);
