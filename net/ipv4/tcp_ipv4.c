@@ -1835,6 +1835,10 @@ process:
 #ifdef CONFIG_MPTCP
 		if (unlikely(sk->sk_state != TCP_LISTEN && !is_meta_sk(sk))) {
 #else
+		if (tcp_checksum_complete(skb)) {
+			reqsk_put(req);
+			goto csum_error;
+		}
 		if (unlikely(sk->sk_state != TCP_LISTEN)) {
 #endif
 			inet_csk_reqsk_queue_drop_and_put(sk, req);
