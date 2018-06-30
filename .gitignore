@@ -25,13 +25,21 @@
 modules.builtin
 *.elf
 *.bin
+*.tar
 #*.gz
 *.bz2
 *.lzma
 *.xz
 *.lzo
+*.lz4
 # *.patch
 *.gcno
+modules.builtin
+Module.symvers
+*.dwo
+*.su
+*.dtbo
+*.pyc
 *.zip
 
 #
@@ -41,6 +49,7 @@ modules.builtin
 /TAGS
 /linux
 /vmlinux
+/vmlinux.32
 /vmlinuz
 /System.map
 /Module.markers
@@ -64,6 +73,7 @@ include/config
 include/linux/version.h
 include/generated
 arch/*/include/generated
+drivers/huawei_platform/oases/inlinehook_offset.h
 
 # stgit generated dirs
 patches-*
@@ -82,6 +92,9 @@ GRTAGS
 GSYMS
 GTAGS
 
+# id-utils files
+ID
+
 *.orig
 *~
 \#*#
@@ -94,6 +107,9 @@ out/
 
 # Wireguard
 net/wireguard/
+
+# Kconfig presets
+all.config
 
 # Kdevelop4
 *.kdev4
